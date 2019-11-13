@@ -1,13 +1,13 @@
-package com.soen343.smartdriver;
+package com.soen343.salonapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SmartDriverApplication {
+public class SalonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SmartDriverApplication.class, args);
+		SpringApplication.run(SalonApplication.class, args);
 	}
 
 }
