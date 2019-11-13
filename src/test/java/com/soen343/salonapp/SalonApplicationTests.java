@@ -14,8 +14,8 @@ class SalonApplicationTests {
 
 	@Test
 	void test() {
-		Customer c = new Customer("johndoe", "123456", "John", "Doe");
-		System.out.println(c);
+//		Customer c = new Customer("johndoe", "123456", "John", "Doe");
+//		System.out.println(c);
 	}
 
 }

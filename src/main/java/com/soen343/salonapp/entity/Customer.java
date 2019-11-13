@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Customer extends AbstractUser {
 
-    public Customer(String username, String password, String firstName, String lastName) {
-        super(username, password, firstName, lastName);
+    public Customer(String username, String password, String email, String firstName, String lastName) {
+        super(username, password, email, firstName, lastName);
     }
 }
