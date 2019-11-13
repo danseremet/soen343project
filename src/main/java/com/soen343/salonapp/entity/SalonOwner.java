@@ -13,12 +13,12 @@ import javax.persistence.GenerationType;
 @Entity
 @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Customer extends AbstractUser {
+public class SalonOwner extends AbstractUser{
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO )
     private Integer id;
 
-    public Customer(String username, String password, String firstName, String lastName) {
+    public SalonOwner(String username, String password, String firstName, String lastName) {
         super(username, password, firstName, lastName);
     }
 
