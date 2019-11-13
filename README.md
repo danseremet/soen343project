@@ -24,4 +24,15 @@ postgres=# create user salonapp with encrypted password 'salonapp'; \
 postgres=# grant all privileges on database mydb to salonapp;
 
 
+### Frontend
+
+Install dependencies:
+```
+cd salon_frontend
+npm install
+```
+Run dev server on localhost:3000
+```
+npm run dev
+```
 
