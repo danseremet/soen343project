@@ -18,8 +18,7 @@ public class SalonOwner extends AbstractUser{
     @GeneratedValue (strategy = GenerationType.AUTO )
     private Integer id;
 
-    public SalonOwner(String username, String password, String firstName, String lastName) {
-        super(username, password, firstName, lastName);
+    public SalonOwner(String username, String password, String email, String firstName, String lastName) {
+        super(username, password, email, firstName, lastName);
     }
-
 }
