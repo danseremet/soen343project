@@ -6,7 +6,6 @@
       <h1 class="title">
         salon_frontend
       </h1>
-      <no-ssr>
         <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
           Launch demo modal
@@ -32,7 +31,6 @@
               </div>
           </div>
           </div>
-      </no-ssr>
 
 
         <div class="container">
