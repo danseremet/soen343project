@@ -1,14 +1,12 @@
 package com.soen343.salonapp.entity;
 
 import lombok.AccessLevel;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
