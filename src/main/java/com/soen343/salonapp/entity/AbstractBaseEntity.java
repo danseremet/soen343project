@@ -1,21 +1,24 @@
 package com.soen343.salonapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.UUID;
 
 @MappedSuperclass
+@JsonIgnoreProperties("hibernateLazyInitializer")
 public abstract class AbstractBaseEntity {
 
-    @Id
-    private final UUID id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     public AbstractBaseEntity() {
-        this.id = UUID.randomUUID();
     }
 
-    public String getId() {
-        return id.toString();
+    public Long getId() {
+        return id;
     }
 
     @Override
