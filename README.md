@@ -8,4 +8,15 @@
 
 
 
+### Frontend
+
+Install dependencies:
+```
+cd salon_frontend
+npm install
+```
+Run dev server on localhost:3000
+```
+npm run dev
+```
 
