@@ -9,9 +9,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="(value, name) in bookingstable[0]" v-bind:key="value" >
-      <th scope="row">{{name}}</th>
-      <td>{{value}}</td>
+    <tr>
+      <th scope="row">1</th>
+      <td>2</td>
       <td>date</td>
     </tr>
   </tbody>
@@ -23,10 +23,9 @@
 
 <script>
 export default {
-  name: "BookingsTable",
+  name: "AllSalonsTable",
   props:{
-      bookingstable: Array,
-      title: String,
+      
   },
   methods: {
   },
@@ -40,5 +39,8 @@ export default {
 </script>
 
 <style scoped>
-
+.container {
+  display: flex;
+  flex-direction: column; /* or inline-flex */
+}
 </style>

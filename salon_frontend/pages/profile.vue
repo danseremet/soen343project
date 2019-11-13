@@ -2,7 +2,7 @@
   
 <div id="main" class="container">
      <div class="title ">
-        My Profile
+        {{username}}
       </div>
 
       
@@ -14,7 +14,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{username}}</h5>
-                <p class="card-text">Your username is how you can be uniquely distinguised when making a booking appointments.</p>
+                <p class="card-text">Your username is how you can be uniquely distinguised when making appointments.</p>
                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUsername">Edit Username</button>
               </div>
             </div>
@@ -26,7 +26,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{first_name}} {{last_name}}</h5>
-                <p class="card-text">This is your full name.</p>
+                <p class="card-text">This is your full name, if you somehow change identities you may use the button below to edit it.</p>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editName">Edit Full Name</button>
               </div>
             </div>
@@ -44,6 +44,8 @@
             </div>
           </div>
       </div>
+      
+
       <BookingsTable  v-bind:bookingstable="bookingslist"/>
       <EditModal id="editUsername" />
       <EditModal id="editName" />

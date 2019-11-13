@@ -18,14 +18,15 @@
 <script>
 
 import axios from "axios";
-import navbar from '~/components/navbar.vue'
 
 export default {
     data () {
-    return { showme: true }
+    return { 
+      showme: true 
+      }
   },
   components: {
-    navbar
+    
   }
 }
 </script>
