@@ -5,12 +5,11 @@ import com.soen343.salonapp.repository.CustomerRepository;
 import com.soen343.salonapp.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -27,21 +26,30 @@ public class CustomerServiceImpl implements CustomerService {
 
     // one by id
     @Override
-    public Customer getCustomer(Long id) {
-        return customerRepository.getOne(id);
+    public Optional<Customer> findCustomer(Long id) {
+        return customerRepository.findById(id);
     }
 
-    // check if exists
     @Override
-    public boolean customerExistsByUserNameAndPassword(Customer customer) {
-        ExampleMatcher nameAndPasswordMatcher = ExampleMatcher.matching()
-                .withIgnorePaths("id")
-                .withMatcher("username", ExampleMatcher.GenericPropertyMatcher.of(ExampleMatcher.StringMatcher.EXACT))
-                .withMatcher("password", ExampleMatcher.GenericPropertyMatcher.of(ExampleMatcher.StringMatcher.EXACT));
-        Example<Customer> customerExample = Example.of(customer, nameAndPasswordMatcher);
-        return customerRepository.exists(customerExample);
+    public Optional<Customer> createCustomer(Customer customer) {
+        if (customerExistsByUserName(customer.getUsername())) {
+            return Optional.empty();
+        }
+        return Optional.of(customerRepository.save(customer));
     }
 
+    @Override
+    public boolean customerExistsByUserName(String username) {
+        return customerRepository.existsCustomerByUsername(username);
+    }
+
+    // check if exists with username and password (exact match)
+    @Override
+    public boolean customerExistsByUserNameAndPassword(String username, String password) {
+        return customerRepository.existsCustomerByUsernameAndPassword(username, password);
+    }
+
+    // delete by id
     @Override
     public void deleteCustomer(Long id) throws EmptyResultDataAccessException {
         customerRepository.deleteById(id);
