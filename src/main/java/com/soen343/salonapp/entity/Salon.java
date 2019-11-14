@@ -1,11 +1,13 @@
 package com.soen343.salonapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -13,7 +15,7 @@ public class Salon extends AbstractBaseEntity {
 
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private SalonOwner owner;
 
     @ElementCollection(targetClass = SalonService.class)
@@ -40,6 +42,11 @@ public class Salon extends AbstractBaseEntity {
         this.name = name;
     }
 
+    public Long getOwnerId() {
+        return owner.getId();
+    }
+
+    @JsonIgnore
     public SalonOwner getOwner() {
         return owner;
     }
@@ -48,6 +55,13 @@ public class Salon extends AbstractBaseEntity {
         this.owner = owner;
     }
 
+    public List<Long> getAvailableServicesIds() {
+        return availableServices.stream()
+                .map(AbstractBaseEntity::getId)
+                .collect(Collectors.toList());
+    }
+
+    @JsonIgnore
     public List<SalonService> getAvailableServices() {
         return availableServices;
     }
