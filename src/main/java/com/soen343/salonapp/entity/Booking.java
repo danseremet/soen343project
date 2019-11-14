@@ -1,5 +1,6 @@
 package com.soen343.salonapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -46,6 +47,11 @@ public class Booking extends AbstractBaseEntity {
         this.endTime = endTime;
     }
 
+    public Long getSalonId() {
+        return salon.getId();
+    }
+
+    @JsonIgnore
     public Salon getSalon() {
         return salon;
     }
@@ -54,6 +60,11 @@ public class Booking extends AbstractBaseEntity {
         this.salon = salon;
     }
 
+    public Long getCustomerId() {
+        return customer.getId();
+    }
+
+    @JsonIgnore
     public Customer getCustomer() {
         return customer;
     }
