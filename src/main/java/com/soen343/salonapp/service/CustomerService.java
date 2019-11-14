@@ -14,12 +14,14 @@ public interface CustomerService {
     // one by id
     Optional<Customer> findCustomer(Long id);
 
-    Optional<Customer> createCustomer(Customer customer);
-
     boolean customerExistsByUserName(String username);
 
     // check if exists with username and password (exact match)
     boolean customerExistsByUserNameAndPassword(String username, String password);
+
+    Optional<Customer> createCustomer(Customer customer);
+
+    Optional<Customer> modifyCustomer(Customer customer);
 
     void deleteCustomer(Long id) throws EmptyResultDataAccessException;
 }

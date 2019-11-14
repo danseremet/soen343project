@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,14 +32,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional<Customer> createCustomer(Customer customer) {
-        if (customerExistsByUserName(customer.getUsername())) {
-            return Optional.empty();
-        }
-        return Optional.of(customerRepository.save(customer));
-    }
-
-    @Override
     public boolean customerExistsByUserName(String username) {
         return customerRepository.existsCustomerByUsername(username);
     }
@@ -47,6 +40,37 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean customerExistsByUserNameAndPassword(String username, String password) {
         return customerRepository.existsCustomerByUsernameAndPassword(username, password);
+    }
+
+    @Override
+    public Optional<Customer> createCustomer(Customer customer) {
+        if (customerExistsByUserName(customer.getUsername())) {
+            return Optional.empty();
+        }
+        return Optional.of(customerRepository.save(customer));
+    }
+
+    @Override
+    public Optional<Customer> modifyCustomer(Customer customer) {
+        Optional<Customer> savedCustomer = findCustomer(customer.getId());
+        if (savedCustomer.isPresent()) {
+            Customer updatedCustomer = savedCustomer.get();
+            // update individual properties
+            if (!StringUtils.isEmpty(customer.getFirstName())) {
+                updatedCustomer.setFirstName(customer.getFirstName());
+            }
+            if (!StringUtils.isEmpty(customer.getLastName())) {
+                updatedCustomer.setLastName(customer.getLastName());
+            }
+            if (!StringUtils.isEmpty(customer.getEmail())) {
+                updatedCustomer.setEmail(customer.getEmail());
+            }
+            if (!StringUtils.isEmpty(customer.getPassword())) {
+                updatedCustomer.setPassword(customer.getPassword());
+            }
+            return Optional.of(customerRepository.save(updatedCustomer));
+        }
+        return Optional.empty();
     }
 
     // delete by id

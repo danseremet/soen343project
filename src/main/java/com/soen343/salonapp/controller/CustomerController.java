@@ -7,6 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -39,6 +40,14 @@ public class CustomerController {
     ResponseEntity<Customer> createCustomer(@Valid @RequestBody Customer customer) {
         Optional<Customer> savedCustomer = customerService.createCustomer(customer);
         return savedCustomer.map(sc -> new ResponseEntity<>(sc, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PutMapping("/customers")
+    public @ResponseBody
+    ResponseEntity<Customer> modifyCustomer(@RequestBody Customer customer) {
+        return customerService.modifyCustomer(customer)
+                .map(updatedCustomer -> new ResponseEntity<>(updatedCustomer, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
