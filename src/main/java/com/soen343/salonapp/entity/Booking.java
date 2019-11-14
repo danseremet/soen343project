@@ -3,31 +3,31 @@ package com.soen343.salonapp.entity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Booking extends AbstractBaseEntity {
 
-public class Booking {
-    @Id
-    @GeneratedValue (strategy = GenerationType.AUTO )
-    private Integer id;
     private LocalDateTime startTime;
+
     private LocalDateTime endTime;
+
+    @ManyToOne
     private Salon salon;
+
+    @OneToOne
     private Customer customer;
-    private boolean paymentMade;
+
+    private boolean paid;
 
     public Booking(LocalDateTime startTime, LocalDateTime endTime, Salon salon, Customer customer) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.salon = salon;
         this.customer = customer;
-        this.paymentMade = false;
+        this.paid = false;
     }
 
     public LocalDateTime getStartTime() {
@@ -62,18 +62,18 @@ public class Booking {
         this.customer = customer;
     }
 
-    public boolean isPaymentMade() {
-        return paymentMade;
+    public boolean isPaid() {
+        return paid;
     }
 
-    public void setPaymentMade(boolean paymentMade) {
-        this.paymentMade = paymentMade;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
     @Override
     public String toString() {
 
-        if (paymentMade) {
+        if (paid) {
             return "Booking Deatils: \\" +
                     "Salon: " + salon.getName() +
                     "\\Start Time: " + startTime +

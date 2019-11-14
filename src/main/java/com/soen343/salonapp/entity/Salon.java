@@ -1,40 +1,35 @@
 package com.soen343.salonapp.entity;
-import lombok.AccessLevel;
-import lombok.Generated;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Salon extends AbstractBaseEntity {
 
-public class Salon {
-
-    @Id
-    @GeneratedValue (strategy = GenerationType.AUTO )
-    private Integer id;
     private String name;
+
+    @ManyToOne
     private SalonOwner owner;
-    private String services;
+
+    @ElementCollection(targetClass = SalonService.class)
+    @Enumerated(EnumType.STRING)
+    private List<SalonService> availableServices;
 
     public Salon(String name, SalonOwner owner) {
         this.name = name;
         this.owner = owner;
-        this.services = null;
+        this.availableServices = new ArrayList<>();
     }
 
-    public Salon(String name, SalonOwner owner, String services) {
+    public Salon(String name, SalonOwner owner, List<SalonService> salonServices) {
         this.name = name;
         this.owner = owner;
-        this.services = services;
-    }
-
-    public Integer getId() {
-        return id;
+        this.availableServices = salonServices;
     }
 
     public String getName() {
@@ -53,17 +48,17 @@ public class Salon {
         this.owner = owner;
     }
 
-    public String getServices() {
-        return services;
+    public List<SalonService> getAvailableServices() {
+        return availableServices;
     }
 
-    public void setServices(String services) {
-        this.services = services;
+    public void setAvailableServices(List<SalonService> availableServices) {
+        this.availableServices = availableServices;
     }
 
     @Override
     public String toString() {
         return "Salon: " + name + " \\ Owner: " + owner.getFirstName() + " " + owner.getLastName()
-                + "\\ Salon Services: " + services;
+                + "\\ Available Salon Services: " + availableServices;
     }
 }

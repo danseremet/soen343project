@@ -6,13 +6,14 @@ import lombok.ToString;
 
 import javax.persistence.Entity;
 
-@Entity
+@Entity()
 @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Customer extends AbstractUser {
+public class SalonService extends AbstractBaseEntity {
 
-    public Customer(String username, String password, String email, String firstName, String lastName) {
-        super(username, password, email, firstName, lastName);
+    private String name;
+
+    SalonService(String name) {
+        this.name = name;
     }
-
 }

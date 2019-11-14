@@ -2,7 +2,6 @@ package com.soen343.salonapp.entity;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.MappedSuperclass;
 
