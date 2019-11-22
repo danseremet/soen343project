@@ -3,16 +3,18 @@
 <table class="table table-bordered">
   <thead>
     <tr class="bg-primary">
-      <th scope="col">Booking #</th>
-      <th scope="col">Salon</th>
-      <th scope="col">Date</th>
+      <th scope="col">Salon Name</th>
+      <th scope="col">Owner Name</th>
+      <th scope="col">View Services</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
       <td>2</td>
-      <td>date</td>
+      <td>
+        
+      </td>
     </tr>
   </tbody>
 </table>

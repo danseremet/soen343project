@@ -47,9 +47,9 @@
       
 
       <BookingsTable  v-bind:bookingstable="bookingslist"/>
-      <EditModal id="editUsername" />
-      <EditModal id="editName" />
-      <EditModal id="editEmail"/>
+      <EditModal id="editUsername" v-bind:test="username"/>
+      <EditModal id="editName" :test="full_name"/>
+      <EditModal id="editEmail" v-bind:test="email"/>
       
 
 </div>
@@ -74,7 +74,8 @@ export default {
         username: '',
         first_name: '',
         last_name: '',
-        email:''
+        email:'',
+        full_name: '',
     }
   },
   components: {
@@ -99,6 +100,7 @@ export default {
       first_name: temp_first_name,
       last_name: temp_last_name,
       email: temp_email,
+      full_name: temp_first_name+' '+temp_last_name
     };
   }
 
