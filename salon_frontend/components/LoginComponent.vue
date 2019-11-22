@@ -31,7 +31,7 @@ export default {
       }
     },
     fake_login(){
-        this.$router.push('/home');
+        this.$router.push('/');
     }
 
   },

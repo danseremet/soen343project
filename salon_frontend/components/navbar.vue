@@ -1,6 +1,6 @@
 <template>
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Salon Store</a>
+  <nuxt-link to="/" class="navbar-brand">Salon Store</nuxt-link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,10 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <nuxt-link to="/home" class="nav-link">Home</nuxt-link>
-      </li>
-       <li class="nav-item">
-        <nuxt-link to="/profile" class="nav-link">My Profile</nuxt-link>
+        <nuxt-link to="/" class="nav-link">Home</nuxt-link>
       </li>
       <li class="nav-item">
         <nuxt-link to="/salons" class="nav-link">All Salons</nuxt-link>
@@ -21,9 +18,8 @@
           Account
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <nuxt-link to="/about" class="dropdown-item">About Us</nuxt-link>
-          <nuxt-link to="/settings" class="dropdown-item">Settings</nuxt-link>
-          <a class="dropdown-item" href="#">Logout</a>
+          <nuxt-link to="/profile" class="dropdown-item">My Profile</nuxt-link>
+          <nuxt-link to="/login" class="dropdown-item">Logout</nuxt-link>
         </div>
       </li>
     </ul>
