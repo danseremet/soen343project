@@ -6,7 +6,8 @@
 - Java version >= 8
 - Add lombok plugin to Intellij
 
-
+### REST APIs
+Run server & go to: localhost:8081/swagger-ui.html
 
 ### Frontend
 
