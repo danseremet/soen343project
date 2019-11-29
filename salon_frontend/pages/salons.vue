@@ -6,37 +6,19 @@
         All Available Salons
       </div>
 
-
-      <div class="row" >
-  <div class="col-sm-6" style="padding:20px;">
+<div class="row">
+      <div v-for="salon in salons" v-bind:key="salon.id" class="col-sm-6" style="padding:20px;">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Salon Name</h5>
+        <h5 class="card-title">{{salon.name}}</h5>
         <p class="card-text">Owned by (salon.salonOwner).</p>
-        <a href="#" class="btn btn-primary">Go to (Salon) Page</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6" style="padding:20px;">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Salon Name</h5>
-        <p class="card-text">Owned by (salon.salonOwner).</p>
-        <a href="#" class="btn btn-primary">Go to (Salon) Page</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6" style="padding:20px;">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Salon Name</h5>
-        <p class="card-text">Owned by (salon.salonOwner).</p>
-        <a href="#" class="btn btn-primary">Go to (Salon) Page</a>
+        <a href="#" class="btn btn-primary">Go to {{salon.name}}'s Page</a>
       </div>
     </div>
   </div>
 </div>
-      
+
+<!-- <AllSalonsTable /> -->
 
 
 </div>
@@ -53,11 +35,22 @@ import SalonAccordion from '~/components/SalonAccordion.vue'
 export default {
     data () {
     return { 
-      showme: true 
+      salons: [],
       }
   },
+  async asyncData({$axios}) {
+    let all_salons = await $axios.get(
+      "/api/v1/salons"
+    );
+    console.log('hi');
+    
+    return {
+      salons: all_salons.data,
+    };
+  },
   components: {
-    SalonAccordion
+    SalonAccordion,
+    AllSalonsTable
   }
 }
 </script>
