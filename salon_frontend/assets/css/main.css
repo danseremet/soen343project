@@ -16,6 +16,7 @@
     color: #35495e;
     letter-spacing: 1px;
   }
+
   
   .subtitle {
     font-weight: 300;
@@ -24,7 +25,32 @@
     word-spacing: 5px;
     padding-bottom: 15px;
   }
+  .title-inverse{
+    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    display: block;
+    font-weight: 300;
+    font-size: 100px;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 3px 3px 6px #526488, 0 0 10px #526488; 
+  }
+  .subtitle-inverse{    
+    font-weight: 300;
+    font-size: 42px;
+    color: white;
+    word-spacing: 5px;
+    padding-bottom: 15px;
+    text-shadow: 0 0 6px #526488, 0 0 10px #526488; 
+  }
+    
   
   .links {
     padding-top: 15px;
+  }
+  .background--homepage {
+    background-image: url("../../assets/salon-2.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
   }

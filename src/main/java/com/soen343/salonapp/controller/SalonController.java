@@ -30,6 +30,15 @@ public class SalonController {
     List<Salon> getSalons() {
         return salonService.getSalons();
     }
+    
+
+    @RequestMapping("/searchResults")
+    public @ResponseBody
+    List<Salon> searchSalon(@RequestParam(value = "name") String name) {
+        System.out.println(name);
+        return salonService.searchSalon(name);;
+    }
+
 
     @DeleteMapping("salons/{id}")
     public @ResponseBody
