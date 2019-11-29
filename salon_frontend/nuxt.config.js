@@ -59,7 +59,8 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
-    'nuxt-socket-io'
+    'nuxt-socket-io',
+    '@nuxtjs/axios',
   ],
   io: {
     sockets: [
@@ -85,6 +86,10 @@ export default {
         }
       }
     ]
+  },
+  axios: {
+    baseURL: 'http://localhost:8081',
+    credentials: false
   },
 
   /*

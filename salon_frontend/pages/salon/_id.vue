@@ -25,6 +25,9 @@ export default {
       showme: true 
       }
   },
+  created(){
+    console.log(this.$route.params.id);
+  },
   components: {
     
   }
