@@ -10,7 +10,7 @@
           <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card">
               <div class="card-header">
-                Username
+                Usernames
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{username}}</h5>
