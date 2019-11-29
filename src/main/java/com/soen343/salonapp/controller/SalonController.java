@@ -32,11 +32,11 @@ public class SalonController {
     }
     
 
-    @RequestMapping("/searchResults")
+    @PostMapping("/searchResults")
     public @ResponseBody
     List<Salon> searchSalon(@RequestParam(value = "name") String name) {
         System.out.println(name);
-        return salonService.searchSalon(name);;
+        return salonService.searchSalon(name);
     }
 
 
