@@ -77,7 +77,8 @@ export default {
           );
 
           console.log(store_obj.data);
-          this.$store.commit('user/add', store_obj.data);
+          this.$store.commit('user/populate', store_obj.data);
+          this.$store.commit('user/login');
      
 
           this.$router.push("/");
@@ -91,8 +92,8 @@ export default {
   },
   data() {
     return {
-      username: "danseremet",
-      password: "123456",
+      username: "",
+      password: "",
       errors: []
     };
   }
