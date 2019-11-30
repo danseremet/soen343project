@@ -2,7 +2,7 @@
   
 <div id="main" class="container">
      <div class="title ">
-        {{username}}
+        {{this.$store.state.user.user.username}}
       </div>
 
       
@@ -10,10 +10,10 @@
           <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card">
               <div class="card-header">
-                Username
+                Usernames
               </div>
               <div class="card-body">
-                <h5 class="card-title">{{username}}</h5>
+                <h5 class="card-title">{{this.$store.state.user.user.username}}</h5>
                 <p class="card-text">Your username is how you can be uniquely distinguised when making appointments.</p>
                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUsername">Edit Username</button>
               </div>
@@ -25,7 +25,7 @@
                 Full Name
               </div>
               <div class="card-body">
-                <h5 class="card-title">{{first_name}} {{last_name}}</h5>
+                <h5 class="card-title">{{this.$store.state.user.user.firstName}} {{this.$store.state.user.user.lastName}}</h5>
                 <p class="card-text">This is your full name, if you somehow change identities you may use the button below to edit it.</p>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editName">Edit Full Name</button>
               </div>
@@ -37,7 +37,7 @@
                 Email
               </div>
               <div class="card-body">
-                <h5 class="card-title">{{email}}</h5>
+                <h5 class="card-title">{{this.$store.state.user.user.email}}</h5>
                 <p class="card-text">This is the email address you will be contacted by for any appointments or receipts.</p>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editEmail">Edit Email</button>
               </div>
@@ -46,7 +46,7 @@
       </div>
       
 
-      <BookingsTable  v-bind:bookingstable="bookingslist"/>
+      <BookingsTable  v-bind:bookingstable="results"/>
       <EditModal id="editUsername" v-bind:test="username"/>
       <EditModal id="editName" :test="full_name"/>
       <EditModal id="editEmail" v-bind:test="email"/>
@@ -63,11 +63,14 @@
 
 <script>
 
+import axios from "axios";
 import BookingsTable from '~/components/BookingsTable.vue';
 import EditModal from '~/components/EditModal.vue';
 
 
 export default {
+  //middleware: 'authenticated',
+  
     data () {
     return { 
         bookingslist: [],
@@ -76,13 +79,19 @@ export default {
         last_name: '',
         email:'',
         full_name: '',
+        results: [],
     }
+  },
+  mounted(){
+    this.$axios.get("/api/v1/bookings/customer/" + this.$store.state.user.user.id).then(response => {
+            this.results = response.data
+          })
   },
   components: {
     BookingsTable,
     EditModal
   },
-    async asyncData(context) {
+    async asyncData({$store}) {
       let my_bookingslist = [
                     { 
                       "booking1":"description1", 
@@ -90,17 +99,8 @@ export default {
                       "booking3":"description3",
                     }
                         ];
-      let temp_username = "MyUsername";
-      let temp_first_name = "First";
-      let temp_last_name = "Last";
-      let temp_email = "test@gmail.com";
       return {
       bookingslist: my_bookingslist,
-      username: temp_username,
-      first_name: temp_first_name,
-      last_name: temp_last_name,
-      email: temp_email,
-      full_name: temp_first_name+' '+temp_last_name
     };
   }
 
