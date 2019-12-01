@@ -93,8 +93,8 @@ public class BookingController {
         try {
             bookingService.deleteBooking(id);
         } catch (EmptyResultDataAccessException e) {
-            return (ResponseEntity<Boolean>) ResponseEntity.notFound();
+            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
         }
-        return (ResponseEntity<Boolean>) ResponseEntity.ok();
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }

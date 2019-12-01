@@ -26,3 +26,9 @@ insert into salon (name, owner_id) values ('Arts Salon', 2);
 insert into salon_available_services (salon_id, available_services_id) values (2, 4);
 insert into salon_available_services (salon_id, available_services_id) values (2, 5);
 insert into salon_available_services (salon_id, available_services_id) values (2, 6);
+
+
+-- Salon example 3 with services
+insert into salon_service (name) values ('TestService');
+insert into salon (name, owner_id) values ('Test Salon', 2);
+insert into salon_available_services (salon_id, available_services_id) values (3, 7);

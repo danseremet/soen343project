@@ -1,6 +1,5 @@
 package com.soen343.salonapp.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +23,6 @@ public class BookingControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper mapper;
 
     @Test
     public void should_return_bookings() throws Exception {
@@ -60,8 +56,8 @@ public class BookingControllerIT {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
 
                 .andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].startTime", is("2019-12-25T15:00:00")))
-                .andExpect(jsonPath("$[0].endTime", is("2019-12-26T12:30:00")))
+                .andExpect(jsonPath("$[0].startTime", is("2020-12-01T16:30:51.471")))
+                .andExpect(jsonPath("$[0].endTime", is("2020-12-01T16:30:51.471")))
                 .andExpect(jsonPath("$[0].paid", is(false)))
                 .andExpect(jsonPath("$[0].salonId", is(1)))
                 .andExpect(jsonPath("$[0].customerId", is(1)))
@@ -80,9 +76,9 @@ public class BookingControllerIT {
     public void should_create_booking() throws Exception {
         this.mockMvc.perform(post(PATH + "/bookings").contentType(MediaType.APPLICATION_JSON).content(
                 "{\"customerId\": 1," +
-                "  \"endTime\": \"2020-12-30T22:45:20.704\"," +
-                "  \"salonId\": 1," +
-                "  \"startTime\": \"2020-12-30T22:45:20.704\"}"))
+                        "  \"endTime\": \"2020-12-30T22:45:20.704\"," +
+                        "  \"salonId\": 1," +
+                        "  \"startTime\": \"2020-12-30T22:45:20.704\"}"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -95,24 +91,34 @@ public class BookingControllerIT {
 
     }
 
-//    @Test TODO
+    @Test
     public void should_modify_booking() throws Exception {
         this.mockMvc.perform(put(PATH + "/bookings").contentType(MediaType.APPLICATION_JSON).content(
                 "{\"customerId\": 1," +
-                        "  \"id\": \"1," +
-                        "  \"salonId\": \"0," +
-                        "  \"endTime\": \"2025-12-30T22:45:20.704\"," +
-                        "  \"startTime\": \"2025-12-30T22:45:20.704\"}"))
+                        "  \"endTime\": \"2020-12-01T16:30:51.471\"," +
+                        "  \"id\": 1," +
+                        "  \"salonId\": 1," +
+                        "  \"startTime\": \"2020-12-01T16:30:51.471\"}"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
 
                 .andExpect(jsonPath("$.customerId", is(1)))
-                .andExpect(jsonPath("$.startTime", is("2020-12-30T22:45:20.704")))
-                .andExpect(jsonPath("$.endTime", is("2020-12-30T22:45:20.704")))
+                .andExpect(jsonPath("$.startTime", is("2020-12-01T16:30:51.471")))
+                .andExpect(jsonPath("$.endTime", is("2020-12-01T16:30:51.471")))
                 .andExpect(jsonPath("$.salonId", is(1)))
         ;
+    }
 
+    @Test
+    public void should_delete_booking() throws Exception {
+        this.mockMvc.perform(delete(PATH + "/bookings/1").contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+
+                .andExpect(jsonPath("$", is(true)))
+        ;
     }
 
 }
