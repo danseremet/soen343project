@@ -1,6 +1,6 @@
 <template>
   <div class>
-    <p class="header">Salon Name: {{saloninfo.name}}</p>
+    <h1 class="salon-name">{{saloninfo.name}}</h1>
   </div>
 </template>
 
@@ -32,6 +32,11 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: lightblue;
+}
+.salon-name {
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .header {

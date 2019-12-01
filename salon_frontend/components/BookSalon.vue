@@ -1,5 +1,5 @@
 <template>
-  <div class="form-container">
+  <div class="booking-form-container">
     <div class="username">
       Appointment Start time
       <input type="datetime-local" v-model="startTime" />
@@ -8,8 +8,8 @@
       Appointment End Time
       <input type="datetime-local" v-model="endTime" />
     </div>
-    <div class="login-button">
-      <button @click="book_salon">Book Appointment</button>
+    <div class>
+      <button class="button--grey" @click="book_salon">Book Appointment</button>
     </div>
     <div class="success">
       <div v-for="s in success" v-bind:key="s.id">{{s}}</div>
@@ -65,10 +65,13 @@ export default {
 };
 </script>
 <style>
-.form-container {
+.booking-form-container {
   display: flex;
   flex-direction: column;
-  background-color: lightblue;
+  background-color: white;
+  border-color: #35495e;
+  border-style: solid;
+  border-width: 5px;
 }
 
 .username {
@@ -82,15 +85,11 @@ export default {
   justify-content: left;
   text-align: left;
 }
-
-.login-button {
-  padding: 15px;
-}
-
 .header {
   padding: 15px;
   text-align: center;
   font-weight: bold;
+  color: #35495e;
 }
 
 .errors {
@@ -100,5 +99,19 @@ export default {
 .errors {
   min-height: 1em;
   color: green;
+}
+.button--grey {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #35495e;
+  color: #35495e;
+  text-decoration: none;
+  padding: 10px 30px;
+  margin-left: 15px;
+}
+
+.button--grey:hover {
+  color: #fff;
+  background-color: #35495e;
 }
 </style>
