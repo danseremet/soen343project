@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 @Entity()
 @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SalonService extends AbstractBaseEntity {
+public class
+SalonService extends AbstractBaseEntity {
 
     private String name;
 

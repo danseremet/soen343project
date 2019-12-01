@@ -7,10 +7,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -60,13 +58,13 @@ public class CustomerController {
 
     @DeleteMapping("customers/{id}")
     public @ResponseBody
-    HttpStatus deleteCustomer(@PathVariable("id") Long id) {
+    ResponseEntity<Boolean> deleteCustomer(@PathVariable("id") Long id) {
         try {
             customerService.deleteCustomer(id);
         } catch (EmptyResultDataAccessException e) {
-            return HttpStatus.NOT_FOUND;
+            return (ResponseEntity<Boolean>) ResponseEntity.notFound();
         }
-        return HttpStatus.OK;
+        return (ResponseEntity<Boolean>) ResponseEntity.ok();
     }
 
 
