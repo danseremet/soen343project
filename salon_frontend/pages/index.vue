@@ -1,43 +1,28 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        salon_frontend
-      </h1>
-      <h2 class="subtitle">
-        Soen343 Salon Project Frontend
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div id="main" class="background--homepage">
+    <div class="container">
+      <h1 class="title-inverse">Find the salon that is right for you.</h1>
+      <h3 class="subtitle-inverse">Get Started now!</h3>
+      <div class="row">
+        <nuxt-link to="/salons">
+          <button class="button--grey">View All Salons</button>
+        </nuxt-link>
+        <nuxt-link to="/profile">
+          <button class="button--grey">Account Dashboard</button>
+        </nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
+  middleware: 'authenticated',
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <style>
-
 </style>

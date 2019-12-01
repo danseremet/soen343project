@@ -12,5 +12,7 @@ public interface SalonService {
     // one by id
     Optional<Salon> findSalon(Long id);
 
+    List<Salon> searchSalon(String name);
+
     void deleteSalon(Long id);
 }

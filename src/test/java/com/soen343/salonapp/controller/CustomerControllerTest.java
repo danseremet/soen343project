@@ -3,17 +3,18 @@ package com.soen343.salonapp.controller;
 import com.soen343.salonapp.entity.Customer;
 import com.soen343.salonapp.service.CustomerService;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertNotEquals;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("test")
 public class CustomerControllerTest {
 
     @Mock

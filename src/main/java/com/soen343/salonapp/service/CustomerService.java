@@ -3,6 +3,7 @@ package com.soen343.salonapp.service;
 
 import com.soen343.salonapp.entity.Customer;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,4 +25,7 @@ public interface CustomerService {
     Optional<Customer> modifyCustomer(Customer customer);
 
     void deleteCustomer(Long id) throws EmptyResultDataAccessException;
+
+    Optional<Customer> getCustomerByUsername(String username);
+
 }

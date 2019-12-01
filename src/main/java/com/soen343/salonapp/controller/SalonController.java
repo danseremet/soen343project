@@ -6,16 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
+@RequestMapping("api/v1")
 public class SalonController {
     @Autowired
     SalonService salonService;
@@ -33,6 +30,15 @@ public class SalonController {
     List<Salon> getSalons() {
         return salonService.getSalons();
     }
+    
+
+    @PostMapping("/searchResults")
+    public @ResponseBody
+    List<Salon> searchSalon(@RequestParam(value = "name") String name) {
+        System.out.println(name);
+        return salonService.searchSalon(name);
+    }
+
 
     @DeleteMapping("salons/{id}")
     public @ResponseBody

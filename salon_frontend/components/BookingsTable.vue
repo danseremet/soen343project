@@ -5,17 +5,22 @@
     <tr class="bg-primary">
       <th scope="col">Booking #</th>
       <th scope="col">Salon</th>
-      <th scope="col">Date</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col">Paid</th>
     </tr>
   </thead>
   <tbody>
-    <tr v-for="(value, name) in bookingstable[0]" v-bind:key="value" >
-      <th scope="row">{{name}}</th>
-      <td>{{value}}</td>
-      <td>date</td>
+    <tr v-for="booking in bookingstable" v-bind:key="booking.id" >
+      <th scope="row">{{booking.id}}</th>
+      <td>{{booking.salonId}}</td>
+      <td>{{booking.startTime}}</td>
+      <td>{{booking.endTime}}</td>
+      <td>{{booking.paid}}</td>
     </tr>
   </tbody>
 </table>
+
 
 
 
@@ -27,8 +32,6 @@ export default {
   props:{
       bookingstable: Array,
       title: String,
-  },
-  methods: {
   },
   data() {
     return {

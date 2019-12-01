@@ -47,6 +47,7 @@ export default {
   */
   plugins: [
     '@/plugins/bootstrap-vue',
+    { src: '~/plugins/vuex-persist', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -59,32 +60,27 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
-    'nuxt-socket-io'
+    'nuxt-socket-io',
+    '@nuxtjs/axios',
+    //'@nuxtjs/auth'
   ],
-  io: {
-    sockets: [
-      {
-        name: 'home',
-        url: 'http://localhost:3000',
-        default: true,
-        vuex: { // optional
-          mutations: [{ progress: 'examples/SET_PROGRESS' }], // pass in the evt --> mutation map OR array of actions
-          actions: [{ chatMessage: 'FORMAT_MESSAGE' }, 'SOMETHING_ELSE' ], // pass in the evt --> action map OR array of actions or mixed!,
-          emitBacks: ['examples/sample', { 'examples/sample2': 'sample2' }] // pass in the state props you want to listen for changes on. When those props thance, they'll fire these "emitBack" events. If the emitBack is a string, it will send the string, otherwise, if it's an object, it will send the mapped string. (see the updated examples in the page/examples.vue, where I also use a "mapState2Way" function in the component).
-        }
-      },
-      { name: 'work', url: 'http://somedomain1:3000' },
-      { name: 'car', url: 'http://somedomain2:3000' },
-      { name: 'tv', url: 'http://somedomain3:3000' },
-      {
-        name: 'test',
-        url: 'http://localhost:4000',
-        vuex: {
-          mutations: ['examples/SET_PROGRESS'],
-          actions: ['FORMAT_MESSAGE']
-        }
-      }
-    ]
+  // auth: {
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: { 
+  //           url: '/api/v1/customer/login', 
+  //           method: 'post' },
+  //       },
+  //       tokenRequired: false,
+  //       tokenType: false
+  //     }
+  //   }
+  // },
+  
+  axios: {
+    baseURL: 'http://localhost:8081',
+    credentials: false
   },
 
   /*

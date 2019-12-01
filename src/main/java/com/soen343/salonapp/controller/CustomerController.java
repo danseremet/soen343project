@@ -13,7 +13,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
+@RequestMapping("api/v1")
 public class CustomerController {
 
     @Autowired
@@ -54,6 +55,14 @@ public class CustomerController {
     public @ResponseBody
     boolean customerLogin(@RequestBody Customer customer) {
         return customerService.customerExistsByUserNameAndPassword(customer.getUsername(), customer.getPassword());
+    }
+
+    @PostMapping("/customer/getByUsername")
+    public @ResponseBody
+    ResponseEntity<Customer> getCustomerByUsername(@RequestBody String username) {
+        Optional<Customer> customer = customerService.getCustomerByUsername(username);
+        return customer.map(c -> new ResponseEntity<>(c, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("customers/{id}")

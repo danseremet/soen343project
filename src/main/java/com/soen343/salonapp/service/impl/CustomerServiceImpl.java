@@ -78,4 +78,9 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteCustomer(Long id) throws EmptyResultDataAccessException {
         customerRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Customer> getCustomerByUsername(String username) {
+        return customerRepository.findByUsername(username);
+    }
 }
