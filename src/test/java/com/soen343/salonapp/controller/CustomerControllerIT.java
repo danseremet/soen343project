@@ -15,13 +15,13 @@ import static org.springframework.test.util.AssertionErrors.assertNotEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CustomerControllerTest {
+public class CustomerControllerIT {
 
     @Mock
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @Autowired
-    CustomerController customerController;
+    private CustomerController customerController;
 
     @Test
     void should_get_customer_by_existing_id() {

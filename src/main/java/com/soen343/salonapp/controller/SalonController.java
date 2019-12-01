@@ -14,8 +14,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/v1")
 public class SalonController {
-    @Autowired
-    SalonService salonService;
+
+    private SalonService salonService;
+
+    public SalonController(SalonService salonService) {
+        this.salonService = salonService;
+    }
 
     @GetMapping("/salons/{id}")
     public @ResponseBody

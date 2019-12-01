@@ -27,24 +27,25 @@ public class BookingController {
         // TODO move this to data.sql
         BookingDTO bookingDTO1 = new BookingDTO(LocalDateTime.of(2019, 12, 25, 15, 0),
                 LocalDateTime.of(2019, 12, 26, 12, 30), 1L, 1L);
-        BookingDTO bookingDTO2 = new BookingDTO(LocalDateTime.of(2019, 12, 25, 15, 0),
-                LocalDateTime.of(2019, 12, 26, 12, 30), 1L, 2L);
+        BookingDTO bookingDTO2 = new BookingDTO(LocalDateTime.of(2019, 11, 25, 15, 0),
+                LocalDateTime.of(2019, 11, 26, 12, 30), 1L, 2L);
         createBooking(bookingDTO1);
         createBooking(bookingDTO2);
     }
 
-    @Autowired
     private SalonService salonService;
-
-    @Autowired
     private BookingService bookingService;
-
-    @Autowired
     private CustomerService customerService;
+
+    public BookingController(SalonService salonService, BookingService bookingService, CustomerService customerService) {
+        this.salonService = salonService;
+        this.bookingService = bookingService;
+        this.customerService = customerService;
+    }
 
     @GetMapping("/bookings")
     public @ResponseBody
-    List<Booking> getSalons() {
+    List<Booking> getBookings() {
         return bookingService.getBookings();
     }
 
