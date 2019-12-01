@@ -42,12 +42,12 @@ public class SalonController {
 
     @DeleteMapping("salons/{id}")
     public @ResponseBody
-    HttpStatus deleteSalon(@PathVariable("id") Long id) {
+    ResponseEntity<Boolean> deleteSalon(@PathVariable("id") Long id) {
         try {
             salonService.deleteSalon(id);
         } catch (EmptyResultDataAccessException e) {
-            return HttpStatus.NOT_FOUND;
+            return (ResponseEntity<Boolean>) ResponseEntity.notFound();
         }
-        return HttpStatus.OK;
+        return (ResponseEntity<Boolean>) ResponseEntity.ok();
     }
 }
