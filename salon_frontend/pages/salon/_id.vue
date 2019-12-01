@@ -23,7 +23,8 @@ export default {
     this.$axios
       .get("/api/v1/salons/" + this.$route.path.split("/")[2])
       .then(response => {
-        this.results = response.data;
+        console.log(response.data)
+        this.results.push(response.data); 
         console.log("/api/v1/salons/" + this.$route.path.split("/")[2]);
       });
   },
