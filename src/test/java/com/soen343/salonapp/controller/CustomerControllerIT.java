@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertNotEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,5 +35,42 @@ public class CustomerControllerIT {
         assertEquals("firstName is the same", "Dan", customer.getFirstName());
         assertEquals("lastName is the same", "S", customer.getLastName());
     }
+
+    // Not totally sure how to test this since db isnt linked
+    @Test
+    void should_create_customer()
+    {
+        Customer customer = new Customer("dan", "hello", "jane@gmail.com", "Dan", "S");
+        ResponseEntity<Customer> response = customerController.createCustomer(customer);
+        Customer createdCx = response.getBody();
+
+        assertEquals("username is the same", "dan", customer.getUsername());
+        assertEquals("password is the same", "hello", customer.getPassword());
+        assertEquals("email is the same", "jane@gmail.com", customer.getEmail());
+        assertEquals("firstName is the same", "Dan", customer.getFirstName());
+        assertEquals("lastName is the same", "S", customer.getLastName());
+    }
+
+    @Test
+    void should_check_login()
+    {
+        Customer customer = new Customer("dan", "hello", "jane@gmail.com", "Dan", "S");
+        boolean response = customerController.customerLogin(customer);
+        assertEquals("username is the same", "dan", customer.getUsername());
+        assertEquals("password is the same", "hello", customer.getPassword());
+    }
+
+    @Test
+    ResponseEntity<Boolean> should_deleteCustomer_byID()
+    {
+        Long id = 1L;
+        ResponseEntity<Boolean> response = customerController.deleteCustomer(id);
+        Boolean isCustomer = response.getBody();
+
+        assertNotEquals("client is not in DB anymore", "true", isCustomer);
+        return (ResponseEntity<Boolean>) ResponseEntity.ok();
+    }
+
+
 
 }

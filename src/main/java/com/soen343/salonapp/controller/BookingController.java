@@ -89,12 +89,12 @@ public class BookingController {
 
     @DeleteMapping("bookings/{id}")
     public @ResponseBody
-    HttpStatus deleteBooking(@PathVariable("id") Long id) {
+    ResponseEntity<Boolean> deleteBooking(@PathVariable("id") Long id) {
         try {
             bookingService.deleteBooking(id);
         } catch (EmptyResultDataAccessException e) {
-            return HttpStatus.NOT_FOUND;
+            return (ResponseEntity<Boolean>) ResponseEntity.notFound();
         }
-        return HttpStatus.OK;
+        return (ResponseEntity<Boolean>) ResponseEntity.ok();
     }
 }
