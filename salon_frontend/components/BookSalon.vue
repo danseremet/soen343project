@@ -1,16 +1,15 @@
 <template>
   <div class="form-container">
     <div class="username">
-      StartTime
+      Appointment Start time
       <input type="datetime-local" v-model="startTime" />
     </div>
     <div class="password">
-      Endtime
+      Appointment End Time
       <input type="datetime-local" v-model="endTime" />
     </div>
     <div class="login-button">
-      <button @click="book_salon">Submit Booking</button>
-      <!-- <button @click="fake_login"> Fake Login </button> -->
+      <button @click="book_salon">Book Appointment</button>
     </div>
   </div>
 </template>
@@ -24,12 +23,12 @@ export default {
     async book_salon() {
       let route_arr = this.$route.path.split("/");
       let salon_Id = route_arr[2];
-      console.log(salon_Id);
+      console.log(this.startTime);
       this.errors = [];
       try {
         let book_salon_data = {
-          startTime: "2019-11-30T22:11:22.513Z",
-          endTime: "2019-11-30T22:11:22.513Z",
+          startTime: this.startTime,
+          endTime: this.endTime,
           salonId: salon_Id,
           customerId: this.$store.state.user.user.id
         };
@@ -39,7 +38,7 @@ export default {
         );
 
         if (booking_validation.status == 200 && booking_validation.data) {
-          console.log("booking successful");
+          console.log(booking_validation.data);
         } else {
           this.errors.push("Wrong Credentials.");
         }
