@@ -30,8 +30,6 @@ export default {
       let route_arr = this.$route.path.split("/");
       let salon_Id = route_arr[2];
       console.log(this.startTime);
-      this.errors = [];
-      this.success = [];
       try {
         let book_salon_data = {
           startTime: this.startTime,
@@ -59,7 +57,11 @@ export default {
     return {
       username: "",
       password: "",
-      errors: []
+      errors: [],
+      success: [],
+      startTime: "",
+      endTime: ""
+
     };
   }
 };
@@ -93,11 +95,13 @@ export default {
 }
 
 .errors {
-  min-height: 1em;
+  padding: 15px;
+  min-height: 2em;
   color: red;
 }
-.errors {
-  min-height: 1em;
+.success {
+  padding: 15px;
+  min-height: 2em;
   color: green;
 }
 .button--grey {
