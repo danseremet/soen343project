@@ -31,3 +31,17 @@ Run the backend server:
 ```
 java -jar target/salonapp-0.0.1-SNAPSHOT.jar
 ```
+
+### Authors
+
+Claudia Guerreiro
+Dan Seremet 
+Joey Abou Chaker
+Gurinder Dheer
+Jonathan Perez
+Gwendolyne Legate
+Michael Garner
+Kevin Trinh 
+Robert Drury
+Keegan Woods
+Moataz Mohamed 
