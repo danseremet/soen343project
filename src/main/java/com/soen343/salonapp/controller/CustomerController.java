@@ -16,8 +16,11 @@ import java.util.Optional;
 @RequestMapping("api/v1")
 public class CustomerController {
 
-    @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @GetMapping("/customers/{id}")
     public @ResponseBody
