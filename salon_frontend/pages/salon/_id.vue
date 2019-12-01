@@ -15,7 +15,8 @@ export default {
       startTime: "",
       endTime: "",
       salonId: "",
-      customerId: ""
+      customerId: "",
+      results: []
     };
   },
   mounted() {
