@@ -21,3 +21,13 @@ Run dev server on localhost:3000
 npm run dev
 ```
 
+### Run backend in production
+In root directory (salonapp):\
+Build the backend:
+```
+mvn clean install
+```
+Run the backend server:
+```
+java -jar target/salonapp-0.0.1-SNAPSHOT.jar
+```
