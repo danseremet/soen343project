@@ -11,6 +11,12 @@
     <div class="login-button">
       <button @click="book_salon">Book Appointment</button>
     </div>
+    <div class="success">
+      <div v-for="s in success" v-bind:key="s.id">{{s}}</div>
+    </div>
+    <div class="errors">
+      <div v-for="error in errors" v-bind:key="error.id">{{error}}</div>
+    </div>
   </div>
 </template>
 
@@ -25,6 +31,7 @@ export default {
       let salon_Id = route_arr[2];
       console.log(this.startTime);
       this.errors = [];
+      this.success = [];
       try {
         let book_salon_data = {
           startTime: this.startTime,
@@ -38,9 +45,10 @@ export default {
         );
 
         if (booking_validation.status == 200 && booking_validation.data) {
-          console.log(booking_validation.data);
+          console.log("Booking Completed");
+          this.success.push("Booking has been completed");
         } else {
-          this.errors.push("Wrong Credentials.");
+          this.errors.push("Booking cannot be completed");
         }
       } catch (e) {
         console.log(e);
@@ -88,5 +96,9 @@ export default {
 .errors {
   min-height: 1em;
   color: red;
+}
+.errors {
+  min-height: 1em;
+  color: green;
 }
 </style>

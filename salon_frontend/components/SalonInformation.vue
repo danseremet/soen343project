@@ -1,9 +1,6 @@
 <template>
-  <div class="form-container">
-    <p>Salon Name: {{saloninfo.name}}</p>
-    <p>SalonID: {{saloninfo.id}}</p>
-    <p>OwnerID{{saloninfo.ownerId}}</p>
-    <p>Available Services: {{saloninfo.availableServicesIds}}</p>
+  <div class>
+    <p class="header">Salon Name: {{saloninfo.name}}</p>
   </div>
 </template>
 
@@ -12,6 +9,17 @@ export default {
   name: "SalonInformation",
   props: {
     saloninfo: Array
+  },
+  methods: {
+    mapServices(saloninfo) {
+      let salonServices = ["haircut", "Nails", "Shave", "Eyebrows", "Waxing"];
+      let servicesString = "";
+      for (i = 0; i < saloninfo.availableServicesIds.length; i++) {
+        servicesString += salonServices[i];
+      }
+      console.log(servicesString);
+      return servicesString;
+    }
   },
   data() {
     return {};
@@ -26,30 +34,9 @@ export default {
   background-color: lightblue;
 }
 
-.username {
-  padding: 15px;
-  justify-content: left;
-  text-align: left;
-}
-
-.password {
-  padding: 15px;
-  justify-content: left;
-  text-align: left;
-}
-
-.login-button {
-  padding: 15px;
-}
-
 .header {
   padding: 15px;
   text-align: center;
   font-weight: bold;
-}
-
-.errors {
-  min-height: 1em;
-  color: red;
 }
 </style>
